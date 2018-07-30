@@ -1,0 +1,777 @@
+{
+	"info": {
+		"_postman_id": "26ecf9c8-e64b-4005-8445-62de4c3ebdfc",
+		"name": "JProjects-Doc",
+		"description": "# Introduction\nWhat does your API do?\n\n# Overview\nThings that the developers should know about\n\n# Authentication\nWhat is the preferred way of using the API?\n\n# Error Codes\nWhat errors and status codes can a user expect?\n\n# Rate limit\nIs there a limit to the number of requests an user can send?",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "b7016da7-8fee-437d-85f8-35b93253b12f",
+			"name": "Ask For Token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "my-trusted-client",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "secret",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/oauth/token?grant_type=password&username=bill&password=abc123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "password"
+						},
+						{
+							"key": "username",
+							"value": "bill"
+						},
+						{
+							"key": "password",
+							"value": "abc123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "5f378410-9418-4063-861e-627edd982d30",
+			"name": "Refresh Token",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/oauth/token?grant_type=refresh_token&refresh_token=094b7d23-973f-4cc1-83ad-8ffd43de1845",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token"
+						},
+						{
+							"key": "refresh_token",
+							"value": "094b7d23-973f-4cc1-83ad-8ffd43de1845"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "df6ea391-1421-4833-99b0-c269a5190485",
+			"name": "access_token param",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/greeting/?access_token=3525d0e4-d881-49e7-9f91-bcfd18259109",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"greeting",
+						""
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "3525d0e4-d881-49e7-9f91-bcfd18259109"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "fda9b6be-9cdc-4102-99e3-b97376cfaa74",
+			"name": "Create Scope (Modular)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"modular-project-doc\", \n\t\"description\":\"Description of the Modular project.\", \n\t\"label\":\"Modular Project Documentation\",\n\t\"modular\":true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/scope",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scope"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "0ae409df-d841-4cb8-b073-2faa19f41909",
+			"name": "Create Scope (Non-Modular)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"non-modular-project-doc\", \n\t\"description\":\"Description of the Non-Modular project.\", \n\t\"label\":\"Non-Modular Project Documentation\",\n\t\"modular\":false\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/scope",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scope"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "83c6bc4a-8dd9-42ea-b61b-6e68eb211872",
+			"name": "Create Module (Modular Scope)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"module-1\", \n\t\"description\":\"Module 1 of the modular Scope\", \n\t\"label\":\"Module 1 Documentation\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/scope/modular-project-doc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scope",
+						"modular-project-doc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "bc39cce9-9861-4f7f-8593-20181f9b7507",
+			"name": "Create Module (Non-Modular Scope)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"module-1\", \n\t\"description\":\"Module 1 of the non-modular Scope\", \n\t\"label\":\"Module 1 Documentation\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/scope/non-modular-project-doc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scope",
+						"non-modular-project-doc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "e341238c-7102-47c1-94e2-ef3226f3f100",
+			"name": "Add Documentation (Module)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/scope/modular-project-doc/module-1/doc?directory=/Users/henrique/projects/studies/java/java-doc/doc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scope",
+						"modular-project-doc",
+						"module-1",
+						"doc"
+					],
+					"query": [
+						{
+							"key": "directory",
+							"value": "/Users/henrique/projects/studies/java/java-doc/doc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "166d6eeb-fc20-4e0f-93d1-11152c378cef",
+			"name": "Add Documentation (Modular Scope)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/scope/modular-project-doc/doc?directory=/Users/henrique/projects/studies/java/java-doc/doc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scope",
+						"modular-project-doc",
+						"doc"
+					],
+					"query": [
+						{
+							"key": "directory",
+							"value": "/Users/henrique/projects/studies/java/java-doc/doc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "52024a13-d78c-4182-ab39-153c2b684f11",
+			"name": "Add Documentation (Non-Modular Scope)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/scope/non-modular-project-doc/doc?directory=/Users/henrique/projects/studies/java/java-doc/doc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scope",
+						"non-modular-project-doc",
+						"doc"
+					],
+					"query": [
+						{
+							"key": "directory",
+							"value": "/Users/henrique/projects/studies/java/java-doc/doc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "28d95c52-c35f-4e5c-96e4-89e746b0c3af",
+			"name": "Get Scope List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/scope/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scope",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "bb05dbd2-50a6-4a25-856b-4e21c610f283",
+			"name": "Get Module List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/scope/modular-project-doc/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scope",
+						"modular-project-doc",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "ec17dd9f-bc4c-4fed-8a4e-b0c36446db5f",
+			"name": "Get Modular Scope",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/scope?scopeName=modular-project-doc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scope"
+					],
+					"query": [
+						{
+							"key": "scopeName",
+							"value": "modular-project-doc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "a14d81b2-b27b-47d9-9dd0-cd2086ec04ed",
+			"name": "Get Non-Modular Scope",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/scope?scopeName=non-modular-project-doc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scope"
+					],
+					"query": [
+						{
+							"key": "scopeName",
+							"value": "non-modular-project-doc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "177e73f9-9876-4cac-b9d8-1d8fe68a6b9b",
+			"name": "Get Module",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/scope/modular-project-doc?moduleName=module-1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scope",
+						"modular-project-doc"
+					],
+					"query": [
+						{
+							"key": "moduleName",
+							"value": "module-1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "c0b8f056-fcf9-45af-9cd7-f3dbceb924ff",
+			"name": "Rename Scope",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/scope/modular-project-doc?newScopeName=renamed-modular-project-doc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scope",
+						"modular-project-doc"
+					],
+					"query": [
+						{
+							"key": "newScopeName",
+							"value": "renamed-modular-project-doc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "c2da131e-a08c-46d6-aef7-cbe90b67867b",
+			"name": "Rename Module",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/scope/modular-project-doc/module-1?newModuleName=renamed-module-1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scope",
+						"modular-project-doc",
+						"module-1"
+					],
+					"query": [
+						{
+							"key": "newModuleName",
+							"value": "renamed-module-1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "37e725c0-68d7-4199-afa0-4bf20efcb7ac",
+			"name": "Update Scope (Modular)",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"description\":\"New Description of the Modular project.\", \n\t\"label\":\"New Label: Modular Project Documentation\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/scope/modular-project-doc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scope",
+						"modular-project-doc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "31977592-f4cc-43a9-88f6-6375fa3e3372",
+			"name": "Update Module",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"description\":\"New Description of the Modular project.\", \n\t\"label\":\"New Label: Modular Project Documentation\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/scope/modular-project-doc/module-1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scope",
+						"modular-project-doc",
+						"module-1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "4c5c0709-2dd5-44e9-a97a-aee603e6977e",
+			"name": "Update Scope (Modular to Non-Modular)",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"modular\":false\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/scope/modular-project-doc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scope",
+						"modular-project-doc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "c9cf3da3-a90b-4cb0-a6e6-69adb3bb58ef",
+			"name": "Update Scope (Non-Modular to Modular)",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"modular\":true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/scope/non-modular-project-doc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scope",
+						"non-modular-project-doc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "180cf361-fb55-42ba-bcf4-76375ab3f524",
+			"name": "Remove Modular Scope",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/scope?scopeName=modular-project-doc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scope"
+					],
+					"query": [
+						{
+							"key": "scopeName",
+							"value": "modular-project-doc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "0f739782-dec1-4508-945a-cca40f6bfc54",
+			"name": "Remove Non-Modular Scope",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/scope?scopeName=non-modular-project-doc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scope"
+					],
+					"query": [
+						{
+							"key": "scopeName",
+							"value": "non-modular-project-doc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "984f59a5-50bd-401a-b97c-79818932860e",
+			"name": "Remove Module (Modular Scope)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/scope/modular-project-doc?moduleName=module-1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"scope",
+						"modular-project-doc"
+					],
+					"query": [
+						{
+							"key": "moduleName",
+							"value": "module-1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
