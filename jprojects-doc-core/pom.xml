@@ -17,6 +17,10 @@
 	<name>jprojects-doc-core</name>
 	<description>Core module for the project</description>
 
+	<properties>
+		<apache-commons-io.version>2.6</apache-commons-io.version>
+	</properties>
+
 	<build>
 		<resources>
 			<resource>
@@ -26,10 +30,6 @@
 			</resource>
 		</resources>
 	</build>
-
-	<properties>
-		<apache-commons-io.version>2.6</apache-commons-io.version>
-	</properties>
 
 	<dependencies>
 		<dependency>

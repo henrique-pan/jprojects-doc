@@ -19,7 +19,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@Slf4j
 @Service
 public class ModuleServiceImpl implements ModuleService {
 
@@ -28,8 +27,6 @@ public class ModuleServiceImpl implements ModuleService {
 
     @Override
     public Module getModule(Scope scope, String moduleName) throws Exception {
-        log.info("Getting module: {} -> {}", scope.getName(), moduleName);
-
         String scopeName = scope.getName();
         Path modulePath = getModulePath(scopeName, moduleName);
 
@@ -50,8 +47,6 @@ public class ModuleServiceImpl implements ModuleService {
 
     @Override
     public Set<Module> getModules(Scope scope) throws Exception {
-        log.info("Getting module list of scope: {}", scope.getName());
-
         Set<String> moduleNames = new HashSet<>();
 
         String scopeName = scope.getName();
@@ -74,8 +69,6 @@ public class ModuleServiceImpl implements ModuleService {
 
     @Override
     public void createModule(Scope scope, Module module) throws Exception {
-        log.info("Creating module: {}", module.getName());
-
         String scopeName = scope.getName();
         String moduleName = module.getName();
         Path modulePath = getModulePath(scopeName, moduleName);
@@ -95,21 +88,16 @@ public class ModuleServiceImpl implements ModuleService {
                 Files.write(metaFilePath, jsonModule.getBytes());
             } catch (IOException e) {
                 String errorMessage = "Error to create the module: " + e.getMessage();
-                log.error(errorMessage);
                 throw new FileManipulationException(errorMessage);
             }
         } else {
             String errorMessage = "Module already exists: " + module.getName();
-            log.error(errorMessage);
             throw new FileManipulationException(errorMessage);
         }
-        log.info("Module created successfully: {}", module.getName());
     }
 
     @Override
     public Module renameModule(Scope scope, Module module, String newName) throws Exception {
-        log.info("Renaming module: {}/{} -> {}", scope.getName(), module, newName);
-
         try {
             String scopeName = scope.getName();
             String moduleName = module.getName();
@@ -132,23 +120,17 @@ public class ModuleServiceImpl implements ModuleService {
             }
         } catch (FileAlreadyExistsException e) {
             String errorMessage = "Module already exists: " + newName;
-            log.error(errorMessage);
             throw new FileAlreadyExistsException(errorMessage);
         } catch (IOException e) {
             String errorMessage = "Error to rename the module: " + e.getMessage();
-            log.error(errorMessage);
             throw new FileManipulationException(errorMessage, e);
         }
-
-        log.info("Module renamed successfully: {}", module.getName());
 
         return module;
     }
 
     @Override
     public void updateProperties(Scope scope, Module module) throws Exception {
-        log.info("Updating module: {}/{}", scope.getName(), module.getName());
-
         try {
             String scopeName = scope.getName();
             String moduleName = module.getName();
@@ -161,11 +143,8 @@ public class ModuleServiceImpl implements ModuleService {
                     Files.write(metaFilePath, jsonScope.getBytes());
                 }
             }
-
-            log.info("Module updated successfully: {}", scopeName);
         } catch (IOException e) {
             String errorMessage = "Error to update the module's properties: " + e.getMessage();
-            log.error(errorMessage);
             throw new FileManipulationException(errorMessage, e);
         }
     }
@@ -199,7 +178,6 @@ public class ModuleServiceImpl implements ModuleService {
                     Files.write(metaFilePath, jsonModule.getBytes());
                 } catch (IOException e) {
                     String errorMessage = "Error to add the documentation: " + e.getMessage();
-                    log.error(errorMessage);
                     throw new FileManipulationException(errorMessage, e);
                 }
             }
@@ -208,8 +186,6 @@ public class ModuleServiceImpl implements ModuleService {
 
     @Override
     public Module removeModule(Scope scope, Module module) throws Exception {
-        log.info("Removing scope: {}", scope.getName());
-
         String scopeName = scope.getName();
         String moduleName = module.getName();
         Path modulePath = getModulePath(scopeName, moduleName);
@@ -219,7 +195,6 @@ public class ModuleServiceImpl implements ModuleService {
                 FileUtils.deleteDirectory(modulePath.toFile());
             } catch (IOException e) {
                 String errorMessage = ("Error to remove the path: ").concat(modulePath.toString()).concat(". ").concat(e.getMessage());
-                log.error(errorMessage);
                 throw new FileManipulationException(errorMessage, e);
             }
         }
@@ -229,19 +204,13 @@ public class ModuleServiceImpl implements ModuleService {
 
     private boolean moduleExists(Path path) throws NoSuchModuleException {
         if (Files.exists(path)) return true;
-
         String errorMessage = "Module doesn't exist: " + path.getFileName();
-        log.error(errorMessage);
-
         throw new NoSuchModuleException(errorMessage);
     }
 
     private boolean metaFileExists(Path path) throws NoSuchMetaFileException {
         if (Files.exists(path)) return true;
-
         String errorMessage = "Meta file doesn't exist: " + path.getFileName();
-        log.error(errorMessage);
-
         throw new NoSuchMetaFileException(errorMessage);
     }
 }

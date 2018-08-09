@@ -47,14 +47,14 @@ public class Scope {
         sb.append(", nextVersion = ").append(nextVersion);
 
         if(documentations != null && !documentations.isEmpty()) {
-            documentations.stream().forEach(documentation -> {
-                sb.append("\n\t").append(documentation);
+            documentations.forEach(documentation -> {
+                sb.append(", ").append(documentation);
             });
         }
 
         if(modules != null && !modules.isEmpty()) {
-            modules.stream().forEach(module -> {
-                sb.append("\n\t").append(module);
+            modules.forEach(module -> {
+                sb.append(", ").append(module);
             });
         }
 

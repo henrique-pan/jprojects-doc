@@ -14,7 +14,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 
-@Slf4j
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
@@ -25,7 +24,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         httpDTO.httpStatus = HttpStatus.NO_CONTENT.value();
         httpDTO.apiMessage = e.getMessage();
 
-        log.error("RequestException: {}. HTTP Status: {}", httpDTO, HttpStatus.NO_CONTENT.value());
         return handleExceptionInternal(e, httpDTO, new HttpHeaders(), HttpStatus.NO_CONTENT, request);
     }
 
@@ -36,7 +34,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         httpDTO.httpStatus = HttpStatus.CONFLICT.value();
         httpDTO.apiMessage = e.getMessage();
 
-        log.error("RequestException: {}. HTTP Status: {}", httpDTO, HttpStatus.CONFLICT.value());
         return handleExceptionInternal(e, httpDTO, new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
 
@@ -46,7 +43,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         httpDTO.httpStatus = HttpStatus.BAD_REQUEST.value();
         httpDTO.apiMessage = e.getMessage();
 
-        log.error("RequestException: {}. HTTP Status: {}", httpDTO, HttpStatus.BAD_REQUEST.value());
         return handleExceptionInternal(e, httpDTO, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 
@@ -56,7 +52,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         httpDTO.httpStatus = HttpStatus.PRECONDITION_FAILED.value();
         httpDTO.apiMessage = e.getMessage();
 
-        log.error("RequestException: {}. HTTP Status: {}", httpDTO, HttpStatus.PRECONDITION_FAILED.value());
         return handleExceptionInternal(e, httpDTO, new HttpHeaders(), HttpStatus.PRECONDITION_FAILED, request);
     }
 
@@ -67,7 +62,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         httpDTO.httpStatus = HttpStatus.INTERNAL_SERVER_ERROR.value();
         httpDTO.apiMessage = e.getMessage();
 
-        log.error("RequestException: {}. HTTP Status: {}", httpDTO, HttpStatus.INTERNAL_SERVER_ERROR.value());
         return handleExceptionInternal(e, httpDTO, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 

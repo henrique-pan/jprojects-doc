@@ -47,8 +47,8 @@ public class Module {
         sb.append(", creationDate = ").append(creationDate);
 
         if(documentations != null && !documentations.isEmpty()) {
-            documentations.stream().forEach(documentation -> {
-                sb.append("\n\t").append(documentation);
+            documentations.forEach(documentation -> {
+                sb.append(", ").append(documentation);
             });
         }
 

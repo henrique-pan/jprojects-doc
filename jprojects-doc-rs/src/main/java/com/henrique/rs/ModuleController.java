@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Set;
 import java.util.TreeSet;
 
-@Slf4j
 @RestController
 @RequestMapping("/scope")
 public class ModuleController {

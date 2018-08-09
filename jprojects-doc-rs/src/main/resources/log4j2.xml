@@ -6,7 +6,7 @@
 
     <Appenders>
         <Console name="Console">
-            <PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss} %X{logId} %-5p %c{0}:%L %m%n"/>
+            <PatternLayout pattern="[%d{dd-MM-yyyy HH:mm:ss}][%p]%equals{[%X{logId}]}{[]}{}[%c{1}][%m]%n"/>
         </Console>
         <!-- SIMPLE FILE
         <File name="File" bufferedIO="true" fileName="logs/log4j2-file-sync-${date:dd-MM-yyyy}.log">
@@ -17,7 +17,7 @@
         <RollingRandomAccessFile name="File"
                                  fileName="${log-path}/application.log"
                                 filePattern="${log-path}/log-%d{dd-MM-yyyy}.log">
-            <PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss} %X{logId} %-5p %c{0}:%L %m%n"/>
+            <PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss} %-5p%equals{[%X{logId}]}{[]}{}[%c{1}] %m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true" />
                 <!-- SizeBased

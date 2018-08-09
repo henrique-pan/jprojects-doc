@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.0.RELEASE</version>
+		<version>2.0.4.RELEASE</version>
 		<relativePath/>
 	</parent>
 
@@ -31,7 +31,8 @@
 		<disruptor.version>3.3.4</disruptor.version>
         <commons-lang3.version>3.7</commons-lang3.version>
 		<jaxb-api.version>2.3.0</jaxb-api.version>
-		<java.version>9</java.version>
+		<lombok.version>1.18.2</lombok.version>
+		<java.version>1.8</java.version>
 	</properties>
 
 	<dependencies>
@@ -39,6 +40,23 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
+
+		<!-- ASPECT -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+		</dependency>
+		<!-- ASPECT -->
 
         <dependency>
             <groupId>com.lmax</groupId>
@@ -54,8 +72,9 @@
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>			
-			<optional>true</optional>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 
