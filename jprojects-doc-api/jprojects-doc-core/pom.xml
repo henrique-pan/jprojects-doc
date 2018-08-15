@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.grasset</groupId>
+        <artifactId>jprojects-doc-api</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>jprojects-doc-core</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>jprojects-doc-core</name>
+    <description>Module with the bussiness rules</description>
+
+    <properties>
+        <apache-commons-io.version>2.6</apache-commons-io.version>
+    </properties>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>
+                    ${project.basedir}/src/main/resources
+                </directory>
+            </resource>
+        </resources>
+    </build>
+
+    <dependencies>
+        <!-- SPRING-CONTEXT -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <!-- SPRING-CONTEXT -->
+
+        <!-- GSON -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+        <!-- GSON -->
+
+        <!-- APACHE -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${apache-commons-io.version}</version>
+        </dependency>
+        <!-- APACHE -->
+
+        <!-- JACKSON - JSON -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <!-- JACKSON - JSON -->
+
+    </dependencies>
+
+</project>

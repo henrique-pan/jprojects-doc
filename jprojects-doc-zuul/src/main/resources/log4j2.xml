@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration> <!-- status="TRACE" -->
+    <Properties>
+        <Property name="log-path">logs/</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Console">
+            <PatternLayout pattern="[%d{dd-MM-yyyy HH:mm:ss}][%p]%equals{[%X{logId}]}{[]}{}[%c{1}][%m]%n"/>
+        </Console>
+        <!-- SIMPLE FILE
+        <File name="File" bufferedIO="true" fileName="logs/log4j2-file-sync-${date:dd-MM-yyyy}.log">
+            <PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss} %X{logId} %-5p %c{0}:%L - %m%n" />
+        </File>
+        -->
+        <!-- ROLLING POLICY-->
+        <RollingRandomAccessFile name="File"
+                                 fileName="${log-path}/application.log"
+                                filePattern="${log-path}/log-%d{dd-MM-yyyy}.log">
+            <PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss} %X{logId} %-5p %c{0}:%L %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <!-- SizeBased
+                    <SizeBasedTriggeringPolicy size="1 KB"/>
+                -->
+                <!-- CronTrigger
+                <CronTriggeringPolicy schedule="0 0/2 * 1/1 * ? *" />
+                -->
+            </Policies>
+            <!-- The <DefaultRolloverStrategy> element define a rollover strategy that will keep up to 5 files before removing them. -->
+            <DefaultRolloverStrategy max="30"/>
+        </RollingRandomAccessFile>
+
+    </Appenders>
+    <Loggers>
+        <AsyncRoot level="INFO" includeLocation="false">
+            <AppenderRef ref="Console"/>
+        <!--<AppenderRef ref="File"/>-->
+        </AsyncRoot>
+        <!-- SYNC
+        <Root level="INFO" includeLocation="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="File"/>
+        </Root>
+    -->
+    </Loggers>
+</Configuration>
