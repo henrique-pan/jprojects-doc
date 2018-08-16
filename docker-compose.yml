@@ -1,0 +1,39 @@
+version: '2'
+services:
+
+  eureka-server:
+    image: jprojects-doc-eureka
+    ports:
+    - 8079:8079
+    networks:
+    - front-tier
+    - back-tier
+
+  api-gateway:
+    image: jprojects-doc-zuul
+    ports:
+    - 80:8078
+    links:
+    - rest-api-server
+    networks:
+    - front-tier
+    - back-tier
+
+  rest-api-server:
+    image: jprojects-doc-rs
+    ports:
+    - 8080:8080
+    links:
+    - eureka-server
+    networks:
+    - front-tier
+    - back-tier
+    volumes:
+    - /temp/volume:/temp/volume
+
+networks:
+  front-tier:
+    driver: bridge
+  back-tier:
+    driver: bridge
+    internal: true

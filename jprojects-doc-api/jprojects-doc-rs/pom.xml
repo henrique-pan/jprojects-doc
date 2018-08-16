@@ -16,6 +16,13 @@
 	<name>jprojects-doc-rs</name>
 	<description>Module for the REST web service</description>
 
+    <properties>
+        <docker.image.prefix>jprojects-doc</docker.image.prefix>
+        <spring-cloud.version>Finchley.SR1</spring-cloud.version>
+        <springsecurity.version>5.0.3.RELEASE</springsecurity.version>
+        <springsecurityoauth2.version>2.2.1.RELEASE</springsecurityoauth2.version>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -36,14 +43,50 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.0</version>
             </plugin>
+            <!-- DOCKER -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>1.4.4</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.sun.activation</groupId>
+                        <artifactId>javax.activation</artifactId>
+                        <version>1.2.0</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <repository>${project.artifactId}</repository>
+                    <buildArgs>
+                        <JAR_FILE>target/${project.artifactId}.jar</JAR_FILE>
+                    </buildArgs>
+                </configuration>
+            </plugin>
+            <!-- DOCKER -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>${project.groupId}</groupId>
+                                    <artifactId>${project.artifactId}</artifactId>
+                                    <version>${project.version}</version>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
-
-    <properties>
-        <spring-cloud.version>Finchley.SR1</spring-cloud.version>
-        <springsecurity.version>5.0.3.RELEASE</springsecurity.version>
-        <springsecurityoauth2.version>2.2.1.RELEASE</springsecurityoauth2.version>
-    </properties>
 
 	<dependencies>
         <!-- CORE -->
