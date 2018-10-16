@@ -32,4 +32,9 @@ public class ApplicationConfig implements WebMvcConfigurer {
         registry.addInterceptor(logIdInterceptor);
     }
 
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**").allowCredentials(true);
+    }
+
 }
