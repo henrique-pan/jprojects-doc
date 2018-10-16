@@ -4,6 +4,7 @@ import com.grasset.interceptor.LogIdInterceptor;
 import com.grasset.utils.ExternalConfig;
 import com.grasset.utils.PathHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
